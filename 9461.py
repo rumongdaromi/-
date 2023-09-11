@@ -15,3 +15,4 @@ for i in range(6,101):
     
 for i in b:
     print(dp[i])
+    
