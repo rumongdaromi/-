@@ -8,65 +8,30 @@ import sys
 input = sys.stdin.readline
 
 N,M = map(int,input().split())
-graph = []
-
-visited = [[False] * M  for i in range(N)]
 
 
-
-
-for i in range(N):
-    graph.append(input())
-    
+#visited = [[False] * M  for i in range(N)]    
 count = 0
 x,y = 0,0
-def DFS(x,y):
-    global count 
-    if x >= 0 and x < M and y >= 0 and y < N:
-        
-    
-        for i in range(x+1,M):
-            if graph[x][y] == '-':
-                
-                if graph[i][y] == graph[x][y] and not visited[i][y]:
-                    #graph[x][y] = '_' # 문자열은 직접 수정이 안된다는데?
-                    visited[x][y] == True 
-                    continue
-                else:
-                    #graph[x][y] = '_'    # 같은 이유   
-                    visited[x][y] == True
-                    count += 1
-        
-            
-            
-            elif graph[x][y] == '|' and graph[x][y+1] == '|':
-                for i in range(y+1,N):
-                    if graph[x][y] == graph[x][i]:
-                        #graph[x][y] = '+' # ㅇㅇ
-                        visited[x][y] == True
-                        continue
-                    elif graph[x][y] != graph[x][i]:
-                        visited[x][y] == True
-                        #graph[x][y] = '+' # 00 
-                        count += 1
-                        
-DFS(0,0)
-print(graph)
-print(count)
-
-import sys
-input = sys.stdin.readline
-
-N, M = map(int, input().split())
 graph = []
-
-visited = [[False] * M for _ in range(N)]
-
 for i in range(N):
-    graph.append(input().rstrip())  # 개행 문자 제거
+    graph[i] = list(input().replace('\n',''))  # 개행 문자 제거
 
-count = 0
+#graph[0].remove()
+count = 0 
+dx = [1,0,0,0]
+dy = [0,0,1,0]
 
 
-
-
+print(graph)
+def DFS(x,y):
+    global count
+    
+    if x >= 0 and x < M and y >= 0 and y < N: #밖으로 나가지 않게하기 위함
+        if graph[x][y] == '-' and graph[x+1][y] == '-':
+            count += 1
+            DFS(x+1,y)
+            
+        elif graph[x][y] == '|' and graph[x][y+1] == '|':
+            count += 1
+            DFS(x,y+1)
