@@ -8,30 +8,52 @@ import sys
 input = sys.stdin.readline
 
 N,M = map(int,input().split())
-
-
-#visited = [[False] * M  for i in range(N)]    
 count = 0
 x,y = 0,0
 graph = []
 for i in range(N):
-    graph[i] = list(input().replace('\n',''))  # 개행 문자 제거
-
-#graph[0].remove()
-count = 0 
-dx = [1,0,0,0]
-dy = [0,0,1,0]
+    graph.append(list(input().strip()))  # 개행 문자 제거
 
 
-print(graph)
-def DFS(x,y):
-    global count
+def 수직탐색(x,y):
+    if x < 0 or x >= N or y < 0 or y >= M or graph[x][y] != '-':
+        return 
     
-    if x >= 0 and x < M and y >= 0 and y < N: #밖으로 나가지 않게하기 위함
-        if graph[x][y] == '-' and graph[x+1][y] == '-':
+    if graph[x][y] == '-':
+        graph[x][y] = True
+        수직탐색(x,y+1)
+        return True
+
+    return False
+
+
+def 수평탐색(x,y):
+    if x < 0 or x >= N or y < 0 or y >= M or graph[x][y] != '|':
+        return
+    if graph[x][y] == '|':
+        graph[x][y] = True
+        수평탐색(x+1,y)
+        return True
+    
+    return False
+
+
+# N,M = 6,9
+# x =9 y = 6
+for i in range(N):
+    for j in range(M):
+        
+        if 수직탐색(i,j) == True:
+                # 6,9
             count += 1
-            DFS(x+1,y)
             
-        elif graph[x][y] == '|' and graph[x][y+1] == '|':
+
+for i in range(M):
+    for j in range(N):
+        #6,9
+        if 수평탐색(j,i) == True:
             count += 1
-            DFS(x,y+1)
+    
+print(count)  
+  
+
