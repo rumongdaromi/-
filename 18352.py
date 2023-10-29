@@ -91,14 +91,13 @@ input = sys.stdin.readline
 
 N, M, K, X = map(int, input().split())
 
-# 그래프를 인접 리스트로 초기화
 graph = [[] for _ in range(N + 1)]
 
 for _ in range(M):
     A, B = map(int, input().split())
     graph[A].append(B)
 
-# 거리 정보를 저장할 리스트 초기화
+
 distance = [-1] * (N + 1)
 distance[X] = 0  # 출발 도시 X의 거리는 0
 
