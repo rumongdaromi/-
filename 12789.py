@@ -1,13 +1,13 @@
 import sys
 import copy
 input = sys.stdin.readline
-#스택 큐 둘 다 사용 => 줄서는곳은 FIFO => 큐 , 한명씩설수있는공간은 LIFO => 스택
+
 from collections import deque
 N = int(input())
 q = list(map(int,input().split()))
 나 = 1
 
-줄서는곳 = deque()ㄴ
+줄서는곳 = deque()
 for i in q:
     줄서는곳.append(i)
 간식받는곳 = []
