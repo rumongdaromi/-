@@ -22,7 +22,7 @@
 # # print(queue[(a) % len(list_q)])
 
 # #음수면 전체길이 -  ( - 음수) 
-
+#=================================================
 
 import sys
 input = sys.stdin.readline
@@ -39,14 +39,36 @@ for i in range(N):
         풍선.rotate(-(val -1)) #idx => pop
     else:
         풍선.rotate(-val)  
-    
-    # queue.popleft()
-    # print(a)
-    # if a >= 0: 
-    #     queue[a]
-    #     queue.rotate(-a * -1)
-    # else:
-    #     queue[a]
-    #     queue.rotate(a)
+#===================================================    
 
-#음수면 전체길이 -  ( - 음수)   3 2 1 -3 -1  2 1 -3 -1   -3 -1 2 1   1 -1 2
+
+
+
+
+
+
+
+
+
+import sys
+input = sys.stdin.readline
+#from collections import deque
+N = int(input())
+풍선 = list(enumerate(map(int,input().split())))
+idx = 0
+print(풍선)
+
+    
+    
+while 풍선:
+    val = 풍선.pop(idx)
+    print(val[0] + 1 , len(풍선),val[1] , idx)
+
+    if val[1] < 0 and 풍선:
+        idx = (idx + val[1]) % len(풍선) #  2 + (3,-3) 2 - 3 = -1 % 3 = -4 
+    elif val[1] > 0 and 풍선:
+        idx = (idx + (val[1] - 1)) % len(풍선) # 위에서 pop으로 인해 길이가 1 줄어듦
+
+list = [1,2,3,4,5,6]
+
+print(list[-1])
