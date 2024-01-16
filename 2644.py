@@ -13,7 +13,7 @@ visited = [False] * (n + 1)
 for i in range(1, m + 1):
     a, b = map(int, input().split())
     촌수[a].append(b)
-    촌수[b].append(a)  # 이 부분을 하지 않으면 후진을 못함! 왜냐 비어있기 때문이지 
+    촌수[b].append(a)  
     
 print(촌수)
 print(visited)
